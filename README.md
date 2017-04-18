@@ -1,12 +1,17 @@
-# poll-app
+# Poll app
 
 > A simple poll application
+
+File structure and configurations automatically created using vue-cli
 
 ## Build Setup
 
 ``` bash
 # install dependencies
 npm install
+
+# start app locally
+npm start
 
 # serve with hot reload at localhost:8080
 npm run dev
