@@ -1,26 +1,22 @@
 # Poll app
 
-> A simple poll application
+A simple poll application
 
-File structure and configurations automatically created using vue-cli
+File structure and configurations automatically created using vue-cli  
+Before you start you'll need Node.js and its package manager (npm). You can download it [here](https://nodejs.org/en/)
 
-## Build Setup
+## Getting started
 
 ``` bash
-# install dependencies
+#To get started clone the repository
+git clone https://github.com/milebza/poll-app.git
+cd poll-app
+
+# then install the dependencies
 npm install
 
-# start app locally
+# and run the app locally
 npm start
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
