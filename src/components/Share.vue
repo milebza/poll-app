@@ -56,17 +56,17 @@ h3 {
 }
 
 input[type="email"] {
-	margin: 30px 0 5px;
-	width: 300px;
+	margin: 30px 0 15px;
+	width: 210px;
 	padding: 5px 8px;
 	text-align: center;
 }
 
 .btn {
-	width: 300px;
+	width: 100px;
 	cursor: pointer;
     color: white;
-    padding: 8px 60px;
+    padding: 10px 20px;
     border-radius: 1px;
     background-color: #00cc99;
 }

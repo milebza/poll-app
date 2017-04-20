@@ -10,6 +10,8 @@ import Share from '@/components/Share'
 
 Vue.use(Router)
 
+// Extend router and add getDomain method?
+
 const router = new Router({
   routes: [
     {

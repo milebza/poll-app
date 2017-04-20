@@ -11,16 +11,16 @@
         <div class="row list-item">
             <div class="col col-md-4 center">{{ choice.choice }}</div>
             <div class="col col-md-4 center">{{ choice.votes }} {{ choice.votes === 1 ? 'vote' : 'votes' }}</div>
-            <div class="col col-md-4 center"><input type="radio" name="choice" v-model="choice.votes" :value="choice.votes" :id="choice.choice"></div>
+            <div class="col col-md-4 center"><input type="radio" name="choice" v-model="choicePicked" :value="choice.choice" :id="choice.choice"></div>
         </div>
         </label>
     </div>
 
     <!-- Buttons -->
     <div class="row buttons-wrapper">
-        <div class="col col-md-6"></div>
-        <div class="col col-md-3 center"><a class="vote-btn" v-on:click="vote()">Vote</a></div>
-        <div class="col col-md-3 center"><router-link class="share-btn" :to="'/share?url=questions/' + poll.id">Share</router-link></div>
+        <div class="col col-md-8"></div>
+        <div class="col col-md-2 center"><a class="vote-btn" v-on:click="vote()">Vote</a></div>
+        <div class="col col-md-2 center"><router-link class="share-btn" :to="'/share?url=questions/' + poll.id">Share</router-link></div>
     </div>
 </div>
 </template>
@@ -32,7 +32,8 @@ export default {
   name: 'poll_detail',
   data: function() {
     return {
-        poll: {}
+        poll: {},
+        choicePicked: ''
     }
   },
   created: function() {
@@ -44,7 +45,11 @@ export default {
   methods: {
     vote: function () {
         const that = this
-        console.log(this.poll)
+        this.poll.choices.forEach(function(choice) {
+          if (choice.choice === that.choicePicked) {
+            choice.votes += 1
+          }
+        })
         api.updatePoll(this.poll.id, this.poll).then(function(response) {
             that.poll = response.data
         })
@@ -58,7 +63,7 @@ export default {
 @mixin button($color, $bck-color) {
     cursor: pointer;
     color: $color;
-    padding: 10px 12px;
+    padding: 12px 12px;
     border-radius: 1px;
     background-color: $bck-color;
 }
