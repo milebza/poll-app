@@ -56,7 +56,7 @@ h3 {
 }
 
 input[type="email"] {
-	margin: 30px 0 3px;
+	margin: 30px 0 5px;
 	width: 300px;
 	padding: 5px 8px;
 	text-align: center;

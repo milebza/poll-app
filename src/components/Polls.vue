@@ -22,14 +22,13 @@
     </div>
 
     <!-- More button -->
-    <div class="row">
-        <div class="col col-md-12 center"><span class="show-button">Show more</span></div>
+    <div class="row last-element">
+        <div v-if="isVisible" class="col col-md-12 center"><a href="#" class="show-button" v-on:click.prevent="getMore">Show more</a></div>
     </div>
     </div>  
 </template>
 
 <script>
-
 import api from '../api'
 import PollLine from '@/components/PollLine'
 
@@ -39,12 +38,15 @@ export default {
     return {
       polls: [],
       filterString: '',
-      canShare: false
+      canShare: false,
+      isVisible: true,
+      pollOffset: 10
     }
   },
   created: function() {
     const that = this
-    api.getPolls(10, 10, '').then(function(response) {
+    
+    api.getPolls(10, 0, this.filterString).then(function(response) {
       that.polls = response.data
     })
   },
@@ -58,15 +60,30 @@ export default {
     filterPolls: function() {
         const that = this
         this.canShare = true
-        api.getPolls(10, 10, this.filterString).then(function(response) {
+        this.isVisible = false
+
+        api.getPolls('', 0, this.filterString).then(function(response) {
           that.polls = response.data
         })
     },
     clearSearch: function() {
+      const that = this
       this.canShare = false
+      this.isVisible = true
+
       this.filterString = ''
-      api.getPolls(10, 10, '').then(function(response) {
+      api.getPolls(10, 0, '').then(function(response) {
         that.polls = response.data
+      })
+    },
+    getMore: function() {
+      const that = this
+
+      api.getPolls(10, this.pollOffset, '').then(function(response) {
+        response.data.forEach(function(poll) {
+          that.polls.push(poll)
+        })
+        that.pollOffset += 10
       })
     }
   }
@@ -101,5 +118,20 @@ a {
   padding: 7px 12px;
   border-radius: 1px;
   background-color: #bce4bc;
+}
+
+.show-button {
+  display: inline-block;
+  color: black;
+  padding: 15px 0 2px 0;
+  border-bottom: 1px solid white;
+
+  &:hover {
+    border-bottom: 1px solid black;
+  }
+}
+
+.last-element {
+  margin-bottom: 15px;
 }
 </style>
