@@ -10,9 +10,10 @@ import Share from '@/components/Share'
 
 Vue.use(Router)
 
-// Extend router and add getDomain method?
+// TODO: Define domain, use it in Share page (!)
 
 const router = new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -42,7 +43,6 @@ const router = new Router({
   ]
 })
 
-// Investigate if there's better method
 router.beforeEach(function(to, from, next) {
 
 	if (to.name === 'ConnectionLost') {

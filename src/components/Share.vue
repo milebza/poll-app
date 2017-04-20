@@ -1,10 +1,10 @@
 <template>
 	<div class="page-share">
 		<div class="row">
-			<div class="col col-md-12"><h3>URL you'll be sharing:</h3><a v-model="contentUrl">localhost:8080/#/{{ $route.query.url }}</a></div>
+			<div class="col col-md-12"><h3>URL you'll be sharing:</h3><a v-model="contentUrl">localhost:8080/{{ $route.query.url }}</a></div>
 		</div>
 		<div class="row">
-			<div class="col col-md-12"><input v-model="email" type="email" placeholder="Enter your email"></div>
+			<div class="col col-md-12"><input v-model="email" type="email" placeholder="Enter your email" v-focus></div>
 		</div>
 		<div class="row">
 			<div class="col col-md-12"><span class="btn" v-on:click="share()">Share</span></div>
@@ -31,6 +31,13 @@ export default {
         	that.$router.push('/')
     	})
   	}
+  },
+  directives: {
+	  focus: {
+	    inserted: function (el) {
+	        el.focus()
+	    }
+	  }
   }
 }
 </script>

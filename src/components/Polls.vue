@@ -9,9 +9,9 @@
         <!-- Search filter -->
         <div class="col col-md-5">
             <div class="pull-right">
-                <input type="text" placeholder="Type and click enter" v-model="filterString" v-on:keyup.enter="filterPolls">
+                <input type="text" placeholder="Type and click enter" v-focus="$route.query.query_filter" v-model="filterString" v-on:keyup.enter="filterPolls">
                 <span class="cancel-button" v-on:click="clearSearch">Clear</span>
-                <router-link v-if="canShare && filterString !== ''" class="button" :to="'/share?url=questions?query_filter=' + filterString">Share</router-link>
+                <router-link v-if="canShare || ($route.query.query_filter !== undefined && $route.query.query_filter !== '')" class="button" :to="'/share?url=questions?query_filter=' + filterString">Share</router-link>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
 
     <!-- More button -->
     <div class="row last-element">
-        <div v-if="isVisible" class="col col-md-12 center"><a href="#" class="show-button" v-on:click.prevent="getMore">Show more</a></div>
+        <div class="col col-md-12 center"><a href="#" class="show-button" v-on:click.prevent="getMore">Show more</a></div>
     </div>
     </div>  
 </template>
@@ -39,12 +39,15 @@ export default {
       polls: [],
       filterString: '',
       canShare: false,
-      isVisible: true,
       pollOffset: 10
     }
   },
   created: function() {
     const that = this
+
+    if (this.$route.query.query_filter !== undefined && this.$route.query.query_filter !== '') {
+      this.filterString = this.$route.query.query_filter
+    }
     
     api.getPolls(10, 0, this.filterString).then(function(response) {
       that.polls = response.data
@@ -60,16 +63,16 @@ export default {
     filterPolls: function() {
         const that = this
         this.canShare = true
-        this.isVisible = false
+        this.pollOffset = 10
 
-        api.getPolls('', 0, this.filterString).then(function(response) {
+        api.getPolls(10, 0, this.filterString).then(function(response) {
           that.polls = response.data
         })
     },
     clearSearch: function() {
       const that = this
       this.canShare = false
-      this.isVisible = true
+      this.pollOffset = 10
 
       this.filterString = ''
       api.getPolls(10, 0, '').then(function(response) {
@@ -79,14 +82,24 @@ export default {
     getMore: function() {
       const that = this
 
-      api.getPolls(10, this.pollOffset, '').then(function(response) {
+      api.getPolls(10, this.pollOffset, this.filterString).then(function(response) {
         response.data.forEach(function(poll) {
           that.polls.push(poll)
         })
         that.pollOffset += 10
       })
     }
+  },
+  directives: {
+  focus: {
+    inserted: function (el, binding) {
+      console.log(binding)
+      if (binding.value === '') {
+        el.focus()
+      }
+    }
   }
+}
 }
 </script>
 
