@@ -80,8 +80,8 @@
 				const that = this
 				this.canShare = false
 				this.pollOffset = 10
-
 				this.filterString = ''
+				
 				api.getPolls(10, 0, '').then(function(response) {
 					that.polls = response.data
 				})

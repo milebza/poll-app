@@ -16,6 +16,7 @@
 
 	body {
 		font-family: Roboto, sans-serif;
+		font-size: 15px;
 	}
 
 	.container {
@@ -27,20 +28,6 @@
 		p {
 			font-size: 16px;
 			margin-bottom: 40px;
-		}
-
-		label {
-			font-weight: inherit;
-			display: inherit;
-		}
-
-		.header {
-			margin-top: 20px;
-			margin-bottom: 40px;
-		}
-
-		.row {
-			font-size: 15px;
 		}
 
 		.list-item {

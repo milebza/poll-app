@@ -1,5 +1,5 @@
 <template>
-	<h2>Ups! The connection was lost! :(</h2>
+	<h2 class="center">Ups! The connection was lost :(</h2>
 </template>
 
 <script>

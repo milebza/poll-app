@@ -75,9 +75,19 @@
 		background-color: $bck-color;
 	}
 
+	.header {
+		margin-top: 20px;
+		margin-bottom: 40px;
+	}
+
 	h3 {
 		color: #00cc99;
 		margin: 0;
+	}
+
+	label {
+		font-weight: inherit;
+		display: inherit;
 	}
 
 	a {
