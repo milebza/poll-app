@@ -2,6 +2,10 @@
 	<div class="container">
 		<!-- component matched by the route will render here -->
 		<router-view></router-view>
+
+		<!-- TODO: implement Loading screen by checking the server health, add retry action -->
+		<!-- TODO: After the connection is regained, user should be where it was before -->
+
 	</div>
 </template>
 
