@@ -6,7 +6,7 @@ import router from './router'
 
 /* eslint-disable no-new */
 const app = new Vue ({
-	el: '#app',
+	el: '.app',
 	router: router,
 	template: '<App/>',
 	components: { App }

@@ -1,11 +1,13 @@
 <template>
 	<div class="page-poll-detail">
+		<!-- Header -->
 		<div class="row header">
 			<div class="col col-md-8"><h3>{{ poll.id + '. ' + poll.question }}</h3></div>
 			<div class="col col-md-4 right"><router-link :to="'/'" class="back-btn">< back</router-link></div>
 		</div>
 
 		<!-- Options list -->
+		<!-- TODO: create component PollDetailLine -->
 		<div v-for="choice in poll.choices">
 			<label :for="choice.choice">
 				<div class="row list-item">
@@ -38,6 +40,8 @@
 		},
 		created: function() {
 			const that = this
+
+			// Get details about poll
 			api.getPollDetail(this.$route.params.id).then(function(response) {
 				that.poll = response.data
 			})
@@ -45,11 +49,14 @@
 		methods: {
 			vote: function () {
 				const that = this
+
+				// Update poll with choice picked
 				this.poll.choices.forEach(function(choice) {
 					if (choice.choice === that.choicePicked) {
 						choice.votes += 1
 					}
 				})
+				// Send poll
 				api.updatePoll(this.poll.id, this.poll).then(function(response) {
 					that.poll = response.data
 				})

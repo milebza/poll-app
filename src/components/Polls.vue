@@ -6,22 +6,26 @@
 			<!-- Strapline -->
 			<div class="col col-md-7"><p>Pick a question and start voting!</p></div>
 
-			<!-- Search filter -->
 			<div class="col col-md-5">
 				<div class="pull-right">
+					<!-- Search filter -->
 					<input type="text" placeholder="Type and click enter" v-focus="$route.query.query_filter" v-model="filterString" v-on:keyup.enter="filterPolls">
+
+					<!-- Clear search button -->
 					<span class="cancel-button" v-on:click="clearSearch">Clear</span>
+
+					<!-- Share button -->
 					<router-link v-if="canShare" class="button" :to="'/share?url=questions?query_filter=' + filterString">Share</router-link>
 				</div>
 			</div>
 		</div>
 
-		<!-- Question list -->
+		<!-- Polls list -->
 		<div v-for="poll in polls">
 			<poll-line :poll="poll" v-on:click.native="goTo('/questions/' + poll.id)"></poll-line>
 		</div>
 
-		<!-- More button -->
+		<!-- Show more button -->
 		<div class="row last-element">
 			<div class="col col-md-12 center"><a href="#" class="show-button" v-on:click.prevent="getMore">Show more</a></div>
 		</div>
@@ -45,11 +49,13 @@
 		created: function() {
 			const that = this
 
+			// Get the query parameter 'query_filter'
 			if (this.$route.query.query_filter !== undefined && this.$route.query.query_filter !== '') {
 				this.filterString = this.$route.query.query_filter
 				this.canShare = true
 			}
 
+			// Get list of polls
 			api.getPolls(10, 0, this.filterString).then(function(response) {
 				that.polls = response.data
 			})
@@ -94,6 +100,7 @@
 		directives: {
 			focus: {
 				inserted: function (el, binding) {
+					// focus if 'query_filter' is not empty
 					if (binding.value === '') {
 						el.focus()
 					}
