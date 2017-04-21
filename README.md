@@ -3,7 +3,7 @@
 A simple poll application
 
 File structure and configurations automatically created using vue-cli.  
-Before you start you'll need Node.js and its package manager (npm). You can download it [here](https://nodejs.org/en/).
+Before you start you'll need the latest version of Node.js and its package manager (npm). You can download it [here](https://nodejs.org/en/).
 
 ## Getting started
 
