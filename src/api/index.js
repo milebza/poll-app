@@ -3,7 +3,6 @@ import axios from 'axios'
 // copy axios object to api with custom configs
 const api = axios.create({
 	baseURL: 'https://private-bbbe9-blissrecruitmentapi.apiary-mock.com'
-	//User Agent
 })
 
 export default {

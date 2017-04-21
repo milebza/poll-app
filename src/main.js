@@ -5,9 +5,9 @@ import App from './App'
 import router from './router'
 
 /* eslint-disable no-new */
-const app = new Vue({
-  el: '#app',
-  router: router,
-  template: '<App/>',
-  components: { App }
+const app = new Vue ({
+	el: '#app',
+	router: router,
+	template: '<App/>',
+	components: { App }
 })

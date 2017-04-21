@@ -3,9 +3,9 @@
 </template>
 
 <script>
-export default {
-  name: 'connection_lost'
-}
+	export default {
+		name: 'connection_lost'
+	}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

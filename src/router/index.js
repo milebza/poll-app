@@ -13,41 +13,40 @@ Vue.use(Router)
 // TODO: Define domain, use it in Share page (!)
 
 const router = new Router({
-  mode: 'history',
-  routes: [
-    {
-      path: '/',
-      name: 'Polls',
-      component: Polls
-    },
-    {
-      path: '/questions',
-      name: 'Questions',
-      component: Polls
-    },
-    {
-    	path: '/questions/:id',
-    	name: 'PollDetail',
-    	component: PollDetail
-    },
-    {
-      path: '/share/',
-      name: 'Share',
-      component: Share
-    },
-    {
-    	path: '/connection-lost',
-    	name: 'ConnectionLost',
-    	component: ConnectionLost
-    }
-  ]
+	mode: 'history',
+	routes: [
+	{
+		path: '/',
+		name: 'Polls',
+		component: Polls
+	},
+	{
+		path: '/questions',
+		name: 'Questions',
+		component: Polls
+	},
+	{
+		path: '/questions/:id',
+		name: 'PollDetail',
+		component: PollDetail
+	},
+	{
+		path: '/share/',
+		name: 'Share',
+		component: Share
+	},
+	{
+		path: '/connection-lost',
+		name: 'ConnectionLost',
+		component: ConnectionLost
+	}
+	]
 })
 
 router.beforeEach(function(to, from, next) {
-
 	if (to.name === 'ConnectionLost') {
 		return next()
-	} 
+	}
 
 	api.getHealth().then(function(response) {
 		next()
