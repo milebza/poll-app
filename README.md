@@ -1,6 +1,6 @@
 # Poll app
 
-A simple poll application
+A simple poll app for the recruitment process at Bliss Applications
 
 File structure and configurations automatically created using vue-cli.  
 Before you start you'll need the latest version of Node.js and its package manager (npm). You can download it [here](https://nodejs.org/en/).
